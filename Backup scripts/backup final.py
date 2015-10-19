@@ -2,10 +2,9 @@ from subprocess import call
 import os, datetime
 
 # Variables #################################
-Destination = "/Users/alowe/Desktop/testdir/"
+Destination = "/Users/alowe/Desktop/testdir"
 Source = "/debian/project/trace/"
 Site = "ftp.debian.org"
-Options = "r"
 
 Username = " "
 Password = " "
@@ -26,10 +25,18 @@ if Username and Password == " ":
 else:
 	Url = "ftp://" + Username + ":" + Password + Url
 
-os.mkdir(Destination + directoryName + "/")
-os.chdir(Destination + "/" + directoryName + "/")
+os.mkdir(Destination + "/" + directoryName + "/")
+os.chdir(Destination + "/" + directoryName)
 
 def backUp(Source):
-	call(["wget", "-" + Options, Source])
+	call(["wget", "-r", Source])
 
 backUp(Url)
+
+os.chdir(Destination)
+call(["tar", "-jcvf", directoryName + ".tar.bz2", "-P", Destination + "/" + directoryName])
+call(["rm", "-rf", directoryName])
+
+
+
+
