@@ -36,7 +36,3 @@ backUp(Url)
 os.chdir(Destination)
 call(["tar", "-jcvf", directoryName + ".tar.bz2", "-P", Destination + "/" + directoryName])
 call(["rm", "-rf", directoryName])
-
-
-
-
