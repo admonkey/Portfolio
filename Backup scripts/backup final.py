@@ -3,22 +3,28 @@ import os, datetime
 
 # Variables #################################
 Destination = "/Users/alowe/Desktop/testdir/"
-Site = "ftp.debian.org/*"
+Source = "/debian/project/trace/"
+Site = "ftp.debian.org"
 Options = "r"
 
 Username = " "
 Password = " "
 #############################################
 
+if os.path.exists(Destination) == False:
+	os.mkdir(Destination)
+
 now = datetime.datetime.now()
 Year = str(now.day) + "-" + str(now.month) + "-" + str(now.year)
 Time = str(now.hour) + ":" + str(now.minute) + ":" + str(now.second)
 directoryName = Year + " " + Time
 
+Url = Site + Source
+
 if Username and Password == " ":
-	Site = "ftp://" + Site
+	Url = "ftp://" + Url
 else:
-	Site = "ftp://" + Username + ":" + Password + Site
+	Url = "ftp://" + Username + ":" + Password + Url
 
 os.mkdir(Destination + directoryName + "/")
 os.chdir(Destination + "/" + directoryName + "/")
@@ -26,4 +32,4 @@ os.chdir(Destination + "/" + directoryName + "/")
 def backUp(Source):
 	call(["wget", "-" + Options, Source])
 
-backUp(Site)
+backUp(Url)
