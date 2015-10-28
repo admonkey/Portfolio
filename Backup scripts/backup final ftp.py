@@ -11,7 +11,7 @@ Destination = os.environ["Destination"] # Location on the your computer to downl
 #############################################
 
 # Options ###################################
-Name = "Test" # Adds a name to downloaded files
+Name = "" # Adds a name to downloaded files
 Passive = "on" # Turns on or off passive or non passive mode
 #############################################
 
