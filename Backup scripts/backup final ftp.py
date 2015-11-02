@@ -12,7 +12,8 @@ Destination = os.environ["Destination"] # Location on the your computer to downl
 
 # Options ###################################
 Name = "" # Adds a name to downloaded files
-Passive = "on" # Turns on or off passive or non passive mode
+Passive = "off" # Turns on or off passive or non passive mode
+Nhd = "on" # Turns on or off --no-host-directories
 #############################################
 
 linux = sys.platform.startswith('linux')
@@ -28,7 +29,7 @@ if linux == linux or darmin == darmin or os2 == os2: # Makes sure that this scro
 
 	nowDatetime = datetime.datetime.now()
 	Year = str(nowDatetime.month) + "-" + str(nowDatetime.day) + "-" + str(nowDatetime.year) # Sets current Year to month, day, and year
-	Time = str(nowDatetime.hour) + ":" + str(nowDatetime.minute) + ":" + str(nowDatetime.second) # Sets current Time to hour, minute, and second
+	Time = str(nowDatetime.hour) + "-" + str(nowDatetime.minute) + "-" + str(nowDatetime.second) # Sets current Time to hour, minute, and second
 	directoryName = Name + "" + Year + " " + Time # Combines Name, Year, and Time
 
 	Url = Site + Source
@@ -36,23 +37,32 @@ if linux == linux or darmin == darmin or os2 == os2: # Makes sure that this scro
 	if Username and Password == " ":
 		Url = "ftp://" + Url
 	else:
-		Url = "ftp://" + Username + ":" + Password + "@" + Site + "/" + Source
+		Url = "ftp://" + Username + ":" + Password + "@" + Site + ":21" + "/" + Source
 
 	os.mkdir(Destination + "/" + directoryName + "/")
 	os.chdir(Destination + "/" + directoryName)
 
 	if Passive == "on":
-		Passive = "--passive-ftp"
-	else:
 		Passive = "--no-passive-ftp"
+	else:
+		Passive = "--passive-ftp"
+
+	if Nhd == "on":
+		Nhd = "--no-host-directories"
+	else:
+		Nhd = "--host-directories"
 
 	def backUp(Source):
-		call(["wget", "-r", Passive, Source])
+		print("\n")
+		print("\n")
+		call(["wget", "-r", Nhd ,Passive, Source])
+		print("\n")
+		print("\n")
 
 	backUp(Url)
 
 	call(["7z", "a", "-t7z", directoryName + ".7z", Destination + "/" + directoryName, "-mx9", "-mmt", "-ms", "-p" + Archive])
-	shutil.move(directoryName + ".7z", Destination, copy_function="copy")
+	shutil.move(directoryName + ".7z", Destination)
 	shutil.rmtree(Destination + "/" + directoryName)
 
 	nowTime = time.time()
