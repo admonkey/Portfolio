@@ -64,13 +64,7 @@ if linux == linux or darmin == darmin or os2 == os2: # Makes sure that this scro
 	Ed = "--exclude-directories=" + List
 
 	def backUp(Source):
-		print("\n")
-		print(directoryName)
-		print("\n")
 		call(["wget", "-r",Ed ,Cd ,Nc ,Nhd ,Npf ,Source])
-		print("\n")
-		print(directoryName)
-		print("\n")
 
 	backUp(Url)
 
