@@ -12,8 +12,11 @@ Destination = os.environ["Destination"] # Location on the your computer to downl
 
 # Options ###################################
 Name = "" # Adds a name to downloaded files
-Passive = "off" # Turns on or off passive or non passive mode
-Nhd = "on" # Turns on or off --no-host-directories
+Npf = "off" # Turns on or off --no-passive-ftp
+Nhd = "off" # Turns on or off --no-host-directories
+Nc = "off" # Turns on or off --no-clobber
+Num = "" # --cut-dirs list
+List = "" # --exclude-directories list
 #############################################
 
 linux = sys.platform.startswith('linux')
@@ -42,21 +45,31 @@ if linux == linux or darmin == darmin or os2 == os2: # Makes sure that this scro
 	os.mkdir(Destination + "/" + directoryName + "/")
 	os.chdir(Destination + "/" + directoryName)
 
-	if Passive == "on":
-		Passive = "--no-passive-ftp"
-	else:
-		Passive = "--passive-ftp"
+	if Npf == "on":
+		Npf = "--no-passive-ftp"
+	elif Npf == "off":
+		Npf = "--passive-ftp"
 
 	if Nhd == "on":
 		Nhd = "--no-host-directories"
-	else:
+	elif Nhd == "off":
 		Nhd = "--host-directories"
+
+	if Nc == "on":
+		Nc = "--no-clobber"
+	elif Nc == "off":
+		Nc = "--clobber"
+
+	Cd = "--cut-dirs=" + Num
+	Ed = "--exclude-directories=" + List
 
 	def backUp(Source):
 		print("\n")
+		print(directoryName)
 		print("\n")
-		call(["wget", "-r", Nhd ,Passive, Source])
+		call(["wget", "-r",Ed ,Cd ,Nc ,Nhd ,Npf ,Source])
 		print("\n")
+		print(directoryName)
 		print("\n")
 
 	backUp(Url)
