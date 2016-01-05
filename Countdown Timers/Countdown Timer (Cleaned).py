@@ -19,11 +19,6 @@ while True:
 	hour_str, minute_str, second = time_str.split(":")
 	second_str, not_useful = second.split(".")
 
-	Day0 = day_str # Day
-	Hour0 = hour_str # Hour
-	Minute0 = minute_str # Min
-	Second0 = second_str # Sec
-
 	years = int(day_str) / float(365)
 
 	year_final, year_fraction = divmod(years, 1)
@@ -34,72 +29,79 @@ while True:
 	int_days_final = int(rounded_days)
 	str_days_final = str(int_days_final)
 
-	Year1 = str_years_final + " " + "Year" # Year
-	Day1 = str_days_final + " " + "Day" # Day
-	Hour1 = Hour0 + " " + "Hour" # Hour
-	Minute1 = Minute0 + " " + "Minute" # Min
-	Second1 = Second0 + " " + "Second" # Sec
+	Date0 = [str_years_final]
+	Date1 = [str_days_final]
+	Date2 = [hour_str]
+	Date3 = [minute_str]
+	Date4 = [second_str]
 
-	Date0 = [Year1]
-	Date1 = [Day1]
-	Date2 = [Hour1]
-	Date3 = [Minute1]
-	Date4 = [Second1]
-
+	if str_years_final <= str("09"):
+		str_years_final = str(str_years_final[1])
 
 	for str0 in Date0:
-		if (str0 != str(0) + " " + "Year"):
-			if (str(str_years_final) == str("01")):
+		if (str0 != str(0)):
+			if (str(str_years_final) == str("1")):
 				print("-" * 10)
-				print("|" + " " + str0 + " " + "|")
+				print("|" + " " + str_years_final + " " + "Year" + " " + "|")
 				print("-" * 10)
 			else:
 				print("-" * 13)
-				print("|" + " " + str0 + "s" + " " + "|")
+				print("|" + " " + str_years_final + " " + "Years" + " " + "|")
 				print("-" * 13)
+
+	if str_days_final <= str("09"):
+		str_days_final = str(str_days_final[1])
 
 	for str1 in Date1:
-		if (str1 != str(0) + " " + "Day"):
-			if (str(Day0) == str("01")):
+		if (str1 != str(0)):
+			if (str(str_days_final) == str("1")):
 				print("-" * 9)
-				print("|" + " " + str1 + " " + "|")
+				print("|" + " " + str_days_final + " " + "Day" + " " + "|")
 				print("-" * 9)
 			else:
 				print("-" * 12)
-				print("|" + " " + str1 + "s" + " " + "|")
+				print("|" + " " + str_days_final + " " + "Days" + " " + "|")
 				print("-" * 12)
+
+	if hour_str <= str("09"):
+		hour_str = str(hour_str[1])
 
 	for str2 in Date2:
-		if (str2 != str(0) + " " + "Hour"):
-			if (str(Hour0) == str("01")):
-				print("----------")
-				print("|" + " " + str2 + " " + "|")
-				print("----------")
+		if (hour_str != str(0)):
+			if (str(hour_str) == str("1")):
+				print("-" * 10)
+				print("|" + " " + hour_str + " " + "Hour" + " " + "|")
+				print("-" * 10)
 			else:
 				print("-" * 12)
-				print("|" + " " + str2 + "s" + " " + "|")
+				print("|" + " " + hour_str + " " + "Hours" + " " + "|")
 				print("-" * 12)
+
+	if minute_str <= str("09"):
+		minute_str = str(minute_str[1])
 
 	for str3 in Date3:
-		if (str3 != str(0) + " " + "Minute"):
-			if (str(Minute0) == str("01")):
-				print("----------")
-				print("|" + " " + str3 + " " + "|")
-				print("----------")
+		if (minute_str != str(0)):
+			if (str(minute_str) == str("1")):
+				print("-" * 12)
+				print("|" + " " + minute_str + " " + "Minute" + " " + "|")
+				print("-" * 12)
 			else:
 				print("-" * 14)
-				print("|" + " " + str3 + "s" + " " + "|")
+				print("|" + " " + minute_str + " " + "Minutes" + " " + "|")
 				print("-" * 14)
 
+	if second_str <= str("09"):
+		second_str = str(second_str[1])
+
 	for str4 in Date4:
-		if (str4 != str(0) + " " + "Second"):
-			if (str(Second0) == str("01")):
-				print("-" * 13)
-				print("|" + " " + str4 + " " + "|")
-				print("-" * 13)
-			else:
-				print("-" * 14)
-				print("|" + " " + str4 + "s" + " " + "|")
-				print("-" * 14)
-				
+		if (str(second_str) == str("1")):
+			print("-" * 13)
+			print("|" + " " + second_str + " " + "Second" + " " + "|")
+			print("-" * 13)
+		else:
+			print("-" * 14)
+			print("|" + " " + second_str + " " + "Seconds" + " " + "|")
+			print("-" * 14)
+
 	time.sleep(1)
