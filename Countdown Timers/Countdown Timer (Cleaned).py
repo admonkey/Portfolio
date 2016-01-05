@@ -49,7 +49,7 @@ while True:
 
 	for str0 in Date0:
 		if (str0 != str(0) + " " + "Year"):
-			if (str(str_years_final) == str(01)):
+			if (str(str_years_final) == str("01")):
 				print("-" * 10)
 				print("|" + " " + str0 + " " + "|")
 				print("-" * 10)
@@ -60,7 +60,7 @@ while True:
 
 	for str1 in Date1:
 		if (str1 != str(0) + " " + "Day"):
-			if (str(Day0) == str(01)):
+			if (str(Day0) == str("01")):
 				print("-" * 9)
 				print("|" + " " + str1 + " " + "|")
 				print("-" * 9)
@@ -71,7 +71,7 @@ while True:
 
 	for str2 in Date2:
 		if (str2 != str(0) + " " + "Hour"):
-			if (str(Hour0) == str(01)):
+			if (str(Hour0) == str("01")):
 				print("----------")
 				print("|" + " " + str2 + " " + "|")
 				print("----------")
@@ -82,7 +82,7 @@ while True:
 
 	for str3 in Date3:
 		if (str3 != str(0) + " " + "Minute"):
-			if (str(Minute0) == str(01)):
+			if (str(Minute0) == str("01")):
 				print("----------")
 				print("|" + " " + str3 + " " + "|")
 				print("----------")
